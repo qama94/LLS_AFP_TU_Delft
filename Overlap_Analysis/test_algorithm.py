@@ -263,3 +263,19 @@ if __name__ == '__main__':
                     print(f'  ERROR {cls.__name__}.{name}: {e}')
                     errors += 1
         print(f'\n  {passed} passed, {failed} failed, {errors} errors')
+
+        # Visual validation: run on real data and display result
+        data_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'data')
+        import glob
+        slk_files = sorted(glob.glob(os.path.join(data_dir, '*.slk')))[:3]
+        if slk_files:
+            print(f'\n  Visual validation on {len(slk_files)} samples:')
+            sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+            from overlap_peak_analysis import analyze_sample
+            for fp in slk_files:
+                result = analyze_sample(fp, output_dir='tests/results')
+                try:
+                    from IPython.display import display, Image
+                    display(Image(filename=result['image_path']))
+                except ImportError:
+                    print(f'    Saved: {result["image_path"]}')
