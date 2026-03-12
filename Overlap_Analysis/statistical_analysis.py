@@ -195,6 +195,16 @@ def run_full_analysis(csv_path, out_dir):
     
     create_boxplots(primary, out_dir)
     create_summary(primary, out_dir)
+
+    # Display summary figure in notebooks
+    try:
+        from IPython.display import display, Image
+        summary_path = os.path.join(out_dir, 'summary_boxplots.png')
+        if os.path.exists(summary_path):
+            display(Image(filename=summary_path))
+    except ImportError:
+        pass
+
     print(f'\n  All outputs saved to: {out_dir}')
 
 if __name__ == '__main__':
