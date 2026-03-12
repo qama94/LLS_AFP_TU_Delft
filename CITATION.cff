@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Ismayilova
+    given-names: Gamar
+    affiliation: "TU Delft, Department of Aerospace Structures and Materials"
+    email: gamar.ismayilova@gmail.com
+title: "Automated Dimensional Characterisation of Overlap Bead Peaks from Laser Line Scanner Surface Profiles"
+version: 1.0.0
+date-released: 2026-03-10
+license: MIT
+type: software
+keywords:
+  - laser line scanner
+  - automated fibre placement
+  - overlap bead characterisation
+  - peak detection
+  - signal processing
+  - surface profilometry
