@@ -1391,24 +1391,47 @@ def analyze_multiple_samples(filepaths, sample_names, output_dir, **kwargs):
 
 if __name__ == "__main__":
 
-    specimens = [
-        ("/mnt/user-data/uploads/Sample_1_1A_00001.slk", "Sample_1"),
-        ("/mnt/user-data/uploads/Sample_2_1A_00001.slk", "Sample_2"),
-        ("/mnt/user-data/uploads/Sample_3_1A_00001.slk", "Sample_3"),
-    ]
+    def display_result(image_path):
+        """Show the result image — works in Colab, Jupyter, or terminal."""
+        try:
+            from IPython.display import display, Image
+            display(Image(filename=image_path))
+            return
+        except ImportError:
+            pass
+        print(f"  Output saved: {image_path}")
 
-    paths = [s[0] for s in specimens]
-    names = [s[1] for s in specimens]
+    def upload_files():
+        """Upload .slk files — works on Colab, Jupyter, or terminal."""
+        try:
+            from google.colab import files
+            print("Upload your .slk file(s):")
+            uploaded = files.upload()
+            return list(uploaded.keys())
+        except ImportError:
+            pass
 
-    results = analyze_multiple_samples(
-        paths, names,
-        output_dir="/mnt/user-data/outputs",
-        median_kernel=5,
-        spike_window=15,
-        spike_threshold=3.0,
-        prominence_threshold=0.04,
-        min_peak_width=5,
-        min_peak_distance=10,
-        min_base_width_mm=0.5,
-        spatial_outlier_factor=2.0
-    )
+        try:
+            import ipywidgets
+            from IPython.display import display
+            uploader = ipywidgets.FileUpload(accept='.slk', multiple=True)
+            display(uploader)
+            print("Click the upload button above, then re-run this cell.")
+            return []
+        except ImportError:
+            pass
+
+        import sys
+        if len(sys.argv) > 1:
+            return sys.argv[1:]
+
+        path = input("Enter .slk file path (or glob pattern like data/*.slk): ").strip()
+        import glob
+        matches = glob.glob(path)
+        return matches if matches else [path]
+
+    slk_files = upload_files()
+    if slk_files:
+        for fpath in slk_files:
+            result = analyze_sample(fpath, output_dir="results")
+            display_result(result['image_path'])
