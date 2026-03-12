@@ -556,18 +556,76 @@ def run(filepath, sample_name=None, output_dir=None):
     plt.savefig(out, dpi=150, bbox_inches='tight', facecolor='white')
     plt.close()
     print(f"\n  Saved: {out}")
-    return out
+
+    # Build results dict
+    layer_widths = {}
+    layer_heights = {}
+    for br in band_results:
+        if br['lf'] and br['rf']:
+            k = band_tape_layer[br['band']]
+            W = br['rf'][0] - br['lf'][0]
+            seg = z[(x >= br['lf'][0]) & (x <= br['rf'][0])]
+            avg = float(np.mean(seg)) if len(seg) > 0 else 0.0
+            layer_widths[LAYER_NAMES[k]] = W
+            layer_heights[LAYER_NAMES[k]] = avg
+
+    return {
+        'sample': sample_name,
+        'n_bands': N,
+        'n_tape_layers': n_tape_layers,
+        'levels': levels,
+        'band_results': band_results,
+        'band_tape_layer': band_tape_layer,
+        'layer_widths': layer_widths,
+        'layer_heights': layer_heights,
+        'image_path': out,
+    }
 
 
-# ── CLI ───────────────────────────────────────────────────────────────
+# ── Run ───────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        description='AFP layer detection from LLS profiles.')
-    parser.add_argument('files', nargs='+', help='.slk file path(s)')
-    parser.add_argument('-o', '--output', default=None,
-                        help='Output directory (default: same as input)')
-    args = parser.parse_args()
 
-    for fpath in args.files:
-        run(fpath, output_dir=args.output)
+    def display_result(image_path):
+        """Show the result image — works in Colab, Jupyter, or terminal."""
+        try:
+            from IPython.display import display, Image
+            display(Image(filename=image_path))
+            return
+        except ImportError:
+            pass
+        print(f"  Output saved: {image_path}")
+
+    def upload_files():
+        """Upload .slk files — works on Colab, Jupyter, or terminal."""
+        try:
+            from google.colab import files
+            print("Upload your .slk file(s):")
+            uploaded = files.upload()
+            return list(uploaded.keys())
+        except ImportError:
+            pass
+
+        try:
+            import ipywidgets
+            from IPython.display import display
+            uploader = ipywidgets.FileUpload(accept='.slk', multiple=True)
+            display(uploader)
+            print("Click the upload button above, then re-run this cell.")
+            return []
+        except ImportError:
+            pass
+
+        import sys
+        if len(sys.argv) > 1:
+            return sys.argv[1:]
+
+        path = input("Enter .slk file path (or glob pattern like data/*.slk): ").strip()
+        matches = glob.glob(path)
+        return matches if matches else [path]
+
+    slk_files = upload_files()
+    if slk_files:
+        for fpath in slk_files:
+            result = run(fpath, output_dir="results")
+            display_result(result['image_path'])
