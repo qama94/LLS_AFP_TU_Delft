@@ -12,7 +12,7 @@ Automated detection of tape layer count, reference height levels, and geometric 
 
 | Type 1 (2-layer) | Type 2 (2-layer + repass) | Type 3 (3-layer) |
 |:-:|:-:|:-:|
-| ![Type1](examples/Sample_1_1B.png) | ![Type2](examples/Sample_2_1A.png) | ![Type3](examples/Sample_3_1A.png) |
+| ![Type1](examples/Sample_1_1B_detection.png) | ![Type2](examples/Sample_2_2B.png) | ![Type3](examples/Sample_3_1A.png) |
 
 ## 2. Mathematical Foundations
 
