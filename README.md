@@ -12,7 +12,9 @@ This repository provides a reproducible algorithm for the automated dimensional 
 
 ### Example output
 
-![Example: Sample 3_1A overlap peak analysis](examples/Sample%203_1A_peak_analysis.png)
+| Type 1 (2-layer) | Type 2 (2-layer + repass) | Type 3 (3-layer) |
+|:-:|:-:|:-:|
+| ![Type1](examples/Sample_1_1A_peak_analysis.png) | ![Type2](examples/Sample_2_1A_peak_analysis.png) | ![Type3](examples/Sample_3_1A_peak_analysis.png) |
 
 ### Repository contents
 
