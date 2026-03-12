@@ -10,9 +10,6 @@
 
 This repository provides a reproducible algorithm for the automated dimensional characterisation of overlap bead peaks from cross-section surface profiles acquired by a Laser Line Scanner (LLS). The algorithm is designed for Automated Fibre Placement (AFP) tape specimens and performs batch processing of multiple specimens under identical conditions, producing quantitative geometric descriptors suitable for statistical analysis.
 
-### Example output
-
-![Example: Sample 3_1A overlap peak analysis](examples/Sample%203_1A_peak_analysis.png)
 
 ### Repository contents
 
