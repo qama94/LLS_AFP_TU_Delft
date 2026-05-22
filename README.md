@@ -8,24 +8,23 @@ Automated analysis of Laser Line Scanner (LLS) surface profiles from Automated F
 ## Repository Structure
 
 ```
-├── overlap_peak_analysis/          # Algorithm 1: Overlap bead peak characterisation
+├── Overlap_Analysis/          # Algorithm 1: Overlap bead peak characterisation
 │   ├── overlap_peak_analysis.py
 │   ├── statistical_analysis.py
-│   ├── README.md
-│   ├── examples/
-│   ├── tests/
-│   └── statistics/
+│   ├── test_algorithm.py
+│   └── examples/
 │
-├── layer_detection/                # Algorithm 2: Tape layer detection and vertices
+├── Layer_analysis/            # Algorithm 2: Tape layer detection
 │   ├── layer_detection.py
-│   ├── README.md
-│   ├── examples/
-│   └── tests/
+│   ├── statistical_analysis.py
+│   ├── test_layer_detection.py
+│   └── examples/
 │
-├── data/                           # Raw .slk profile data (32 specimens)
+├── LLS_raw_data/              # Raw .slk profile data (32 specimens)
 ├── .gitignore
 ├── CITATION.cff
 ├── LICENSE
+├── README.md
 └── requirements.txt
 ```
 
