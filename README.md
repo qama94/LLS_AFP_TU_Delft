@@ -30,6 +30,9 @@ without manual parameter tuning.
 ---
 
 ## Repository Structure
+
+```
+
 ├── Overlap_Analysis/          # Algorithm 1: Overlap bead peak characterisation
 │   ├── overlap_peak_analysis.py
 │   ├── statistical_analysis.py
@@ -47,6 +50,8 @@ without manual parameter tuning.
 ├── LICENSE
 ├── README.md
 └── requirements.txt
+
+```
 
 ---
 
