@@ -1,19 +1,29 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-authors:
-  - family-names: Ismayilova
-    given-names: Gamar
-    affiliation: "TU Delft, Department of Aerospace Structures and Materials"
-    email: gamar.ismayilova@gmail.com
-title: "Automated Dimensional Characterisation of Overlap Bead Peaks from Laser Line Scanner Surface Profiles"
-version: 1.0.0
-date-released: 2026-03-10
-license: MIT
+message: "If you use this software, please cite both the software and the paper."
 type: software
-keywords:
-  - laser line scanner
-  - automated fibre placement
-  - overlap bead characterisation
-  - peak detection
-  - signal processing
-  - surface profilometry
+authors:
+  - family-names: "Ismayilova"
+    given-names: "Gamar"
+    affiliation: "TU Delft, Department of Aerospace Structures and Materials"
+    email: "gamar.ismayilova@gmail.com"
+title: "AFP Surface Profilometry Analysis"
+version: 1.0.0
+date-released: 2026-04-15
+url: "https://github.com/qama94/LLS_AFP_TU_Delft"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: "Ismayilova"
+      given-names: "Gamar"
+    - family-names: "Florindo"
+      given-names: "Andre"
+    - family-names: "Peeters"
+      given-names: "Daniël"
+  title: "Effects of repassing on the geometric characteristics of CF/LM-PAEK tapes deposited via Humm3-assisted in-situ consolidated AFP"
+  conference:
+    name: "7th International Symposium on Automated Composite Manufacturing (ACM7)"
+    city: "Delft"
+    country: "NL"
+  year: 2026
+  month: 4
